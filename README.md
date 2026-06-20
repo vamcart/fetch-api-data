@@ -39,11 +39,11 @@ http://127.0.0.1:8000/incomes
 ```php
 http://127.0.0.1:8000/sqlite.php
 ```
-```bash
 Выбираем __database/database.sqlite__
+
 Пароль __12345678__
-```
-## Adminer
+
+## Названия таблиц
 ```bash
 sales
 orders
