@@ -14,8 +14,9 @@ php artisan migrate
 ```
 
 ## Команды для выгрузки данных
-`php artisan app:fetch-stocks`
 `php php artisan app:fetch-sales --dateFrom=2026-05-20`
+`php php artisan app:fetch-orders --dateFrom=2026-05-20`
+`php artisan app:fetch-stocks`
 
 ## Запуск
 Стартуем встроенный веб-сервер:
@@ -23,8 +24,9 @@ php artisan migrate
 php artisan serve
 ```
 Смотрим записанные в базу данные
-`http://127.0.0.1:8000/stocks`
+`http://127.0.0.1:8000/orders`
 `http://127.0.0.1:8000/sales`
+`http://127.0.0.1:8000/stocks`
 
 
 ## Запуск по расписанию

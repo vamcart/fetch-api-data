@@ -8,5 +8,6 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::command('app:fetch-stocks')->everyFiveMinutes();
 Schedule::command('app:fetch-sales')->everyThirtyMinutes();
+Schedule::command('app:fetch-orders')->everyTenMinutes();
+Schedule::command('app:fetch-stocks')->everyFiveMinutes();
