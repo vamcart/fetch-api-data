@@ -39,8 +39,17 @@ http://127.0.0.1:8000/incomes
 ```php
 http://127.0.0.1:8000/sqlite.php
 ```
+```bash
 Выбираем __database/database.sqlite__
 Пароль __12345678__
+```
+## Adminer
+```bash
+sales
+orders
+stocks
+incomes
+```
 
 ![Вход](public/adminer/adminer-1.png)
 ![База данных](public/adminer/adminer-2.png)
