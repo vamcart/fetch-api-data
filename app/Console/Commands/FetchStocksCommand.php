@@ -2,35 +2,27 @@
 namespace App\Console\Commands;
 use Illuminate\Bus\Batchable;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
 use App\Models\Stock;
 use Carbon\Carbon;
+use App\Console\Traits\PaginatedFetcher;
 
 class FetchStocksCommand extends Command
 {
-    use Batchable;
+    use Batchable, PaginatedFetcher;
     protected $signature = 'app:fetch-stocks {--dateFrom= : Start date} {--dateTo= : End date}';
     protected $description = 'Загружаем данные из внешнего API и записываем в локальную базу.';
     public function handle(): int
     {
         $dateFrom = $this->option('dateFrom') ?: Carbon::now()->format('Y-m-d');
         $dateTo = $this->option('dateTo') ?: Carbon::now()->format('Y-m-d');
-        $page = 1;
-        while (true) {
-            $response = Http::get(env('API_HOST')."/api/stocks", [
-                'dateFrom' => $dateFrom,
-                'dateTo' => $dateTo,
-                'page' => $page,
-                'key' => env('API_KEY'),
-                'limit' => 500
-            ]);
-            if ($response->failed()) {
-                $this->error("HTTP error: {$response->status()}");
-                return self::FAILURE;
-            }
-            $data = $response->json('data');
-            if (empty($data)) break;
-            foreach ($data as $item) {
+        $baseParams = [
+            'dateFrom' => $dateFrom,
+            'dateTo' => $dateTo,
+            'key' => env('API_KEY'),
+            'limit' => 500
+        ];
+        try {
+            $this->fetchPaginated('/api/stocks', $baseParams, function ($item) {
                 Stock::updateOrCreate(['nm_id' => $item['nm_id']], [
                     'date' => $item['date'],
                     'last_change_date' => $item['last_change_date'] ?? null,
@@ -51,9 +43,10 @@ class FetchStocksCommand extends Command
                     'price' => $item['price'],
                     'discount' => $item['discount']
                 ]);
-            }
-            $this->info("Page {$page} processed, records: " . count($data));
-            $page++;
+            });
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+            return self::FAILURE;
         }
         $this->info('Fetching completed.');
         return self::SUCCESS;
