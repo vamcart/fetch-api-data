@@ -42,7 +42,8 @@ http://127.0.0.1:8000/sqlite.php
 Выбираем __database/database.sqlite__
 Пароль __12345678__
 
-![Adminer](adminer/logged-in.webp)
+![Вход](public/adminer/adminer-1.png)
+![База данных](public/adminer/adminer-2.png)
 
 ## Запуск по расписанию
 Добавляем в `routes/console.php`:
