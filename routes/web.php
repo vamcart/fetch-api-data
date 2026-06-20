@@ -1,14 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Joke;
-use App\Models\Stock;
+use App\Models\Sale;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Existing routes...
 
-Route::get('/stocks', function () {
-    $stocks = Stock::all();
-    return response()->json($stocks);
+Route::get('/sales', function () {
+    return Sale::all();
 });

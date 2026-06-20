@@ -14,14 +14,18 @@ php artisan migrate
 ```
 
 ## Команды для выгрузки данных
-Command `php artisan app:fetch-stocks`
+`php artisan app:fetch-stocks`
+`php php artisan app:fetch-sales --dateFrom=2026-05-20`
 
 ## Запуск
 Стартуем встроенный веб-сервер:
 ```bash
 php artisan serve
 ```
-Смотрим записанные в базу данные `http://127.0.0.1:8000/stocks`
+Смотрим записанные в базу данные
+`http://127.0.0.1:8000/stocks`
+`http://127.0.0.1:8000/sales`
+
 
 ## Запуск по расписанию
 Добавляем в `routes/console.php`:
