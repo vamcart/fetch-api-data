@@ -8,7 +8,7 @@ class CreateStocksTable extends Migration
     public function up(): void
     {
         Schema::create('stocks', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
             $table->date('date');
             $table->date('last_change_date')->nullable();
             $table->string('supplier_article')->nullable();
@@ -21,7 +21,7 @@ class CreateStocksTable extends Migration
             $table->string('warehouse_name')->nullable();
             $table->integer('in_way_to_client')->nullable();
             $table->integer('in_way_from_client')->nullable();
-            $table->bigInteger('nm_id')->unique();
+            $table->bigInteger('nm_id')->nullable();
             $table->string('subject')->nullable();
             $table->string('category')->nullable();
             $table->string('brand')->nullable();
