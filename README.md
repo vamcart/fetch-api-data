@@ -21,14 +21,18 @@ Command `php artisan app:fetch-stocks`
 ```bash
 php artisan serve
 ```
-Смотрим записанные в базу данные `http://127.0.0.1:8000/stocks`.
+Смотрим записанные в базу данные `http://127.0.0.1:8000/stocks`
 
 ## Запуск по расписанию
-Добавляем в `app/routes/console.php`:
+Добавляем в `routes/console.php`:
 ```php
 Schedule::command('app:fetch-stocks')->everyFiveMinutes();
+Запускаем планировщик: `php artisan schedule:work` , либо добавляем в cron строку запуска планировщика:
 ```
-Запускаем плашировщик: `php artisan schedule:work` , либо добавляем в cron строку запуска планировщика.
+
+```php
+* * * * * cd /путь/к/вашему/проекту && php artisan schedule:run >> /dev/null 2>&1
+```
 
 Каждые 5 минут будет выгружаться сток.
 
