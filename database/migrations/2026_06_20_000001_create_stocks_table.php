@@ -15,19 +15,19 @@ class CreateStocksTable extends Migration
             $table->string('tech_size')->nullable();
             $table->bigInteger('barcode')->nullable();
             $table->integer('quantity')->default(0);
-            $table->boolean('is_supply')->default(false);
-            $table->boolean('is_realization')->default(false);
-            $table->integer('quantity_full')->default(0);
+            $table->boolean('is_supply')->nullable();
+            $table->boolean('is_realization')->nullable();
+            $table->integer('quantity_full')->nullable();
             $table->string('warehouse_name')->nullable();
-            $table->integer('in_way_to_client')->default(0);
-            $table->integer('in_way_from_client')->default(0);
+            $table->integer('in_way_to_client')->nullable();
+            $table->integer('in_way_from_client')->nullable();
             $table->bigInteger('nm_id')->unique();
             $table->string('subject')->nullable();
             $table->string('category')->nullable();
             $table->string('brand')->nullable();
             $table->bigInteger('sc_code')->nullable();
             $table->decimal('price', 10, 2)->nullable();
-            $table->integer('discount')->default(0);
+            $table->integer('discount')->nullable();
             $table->timestamps();
         });
     }
