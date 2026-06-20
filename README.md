@@ -34,6 +34,16 @@ http://127.0.0.1:8000/stocks
 http://127.0.0.1:8000/incomes
 ```
 
+## Adminer
+Смотрим базу данных через adminer:
+```php
+http://127.0.0.1:8000/sqlite.php
+```
+Выбираем __database/database.sqlite__
+Пароль __12345678__
+
+![Adminer](adminer/logged-in.webp)
+
 ## Запуск по расписанию
 Добавляем в `routes/console.php`:
 ```php
