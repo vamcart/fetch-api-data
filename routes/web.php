@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Sale;
-use App\Models\Stock;
-use App\Models\Order;
+use App\Models\{Sale, Stock, Order, Income};
 
 // Existing routes...
 
@@ -20,3 +18,7 @@ Route::get('/stocks', function () {
     return response()->json($stocks);
 });
 
+Route::get('/incomes', function () {
+    $incomes = Income::all();
+    return response()->json($incomes);
+});
